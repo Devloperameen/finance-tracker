@@ -198,7 +198,7 @@ export default function App() {
             <div className="input-group"><label>Transport / Fuel ($)</label><input type="number" value={transport} onChange={(e) => setTransport(e.target.value)} placeholder="0" /></div>
             <div className="input-group"><label>Entertainment ($)</label><input type="number" value={entertainment} onChange={(e) => setEntertainment(e.target.value)} placeholder="0" /></div>
             <div className="input-group"><label>House Rent ($)</label><input type="number" value={rent} onChange={(e) => setRent(e.target.value)} placeholder="0" /></div>
-            <div className="input-group"><label>Other Expenses ($)</label><input type="number" value={others} onChange={{/* onChange snippet */}} placeholder="0" onChange={(e) => setOthers(e.target.value)} /></div>
+           <div className="input-group"><label>Other Expenses ($)</label><input type="number" value={others} placeholder="0" onChange={(e) => setOthers(e.target.value)} /></div>
             <button type="submit" className="submit-btn">Save Transactions</button>
           </form>
           <button onClick={downloadStatement} className="download-btn">Download PDF Report</button>
