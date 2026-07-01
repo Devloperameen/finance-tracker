@@ -1,0 +1,245 @@
+/* 🌍 አጠቃላይ የገጽ ቅንብር */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc; /* በጣም የሚያምርና ቀሊል የጀርባ ቀለም */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🏷️ ርዕስ (FINTRACK Title Section) */
+.title-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title-section h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #4f46e5;
+  margin: 0 0 8px 0;
+  letter-spacing: 2px;
+  /* ✨ የጽሑፍ ጥላ (Text Shadow) */
+  text-shadow: 2px 4px 8px rgba(79, 70, 229, 0.25);
+}
+
+.title-section p {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 🎴 የካርዶች አቀማመጥ (ጎን ለጎን እንዲሆኑ) */
+.layout-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  max-width: 1100px;
+  flex-wrap: wrap; /* በትንሽ ስክሪን ላይ ወደ ታች እንዲወርዱ */
+}
+
+/* ⬜ ዋናዎቹ ካርዶች (Form እና Dashboard) */
+.main-card {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 24px;
+  flex: 1;
+  min-width: 380px;
+  max-width: 500px;
+  /* 🌫️ ዘመናዊና ስስ ጥላ (Light Box Shadow & Border) */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.2s ease;
+}
+
+.main-card:hover {
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f8fafc;
+}
+
+/* 📝 የፎርም ሳጥኖች (Input Groups) */
+.input-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background-color: #f8fafc;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* 📊 የዳሽቦርድ አነስተኛ ካርዶች */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  padding: 14px 8px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.income-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; }
+.expense-box { background-color: #fef2f2; border: 1px solid #fecaca; }
+.wealth-box { background-color: #e0e7ff; border: 1px solid #c7d2fe; }
+
+.stat-label { font-size: 0.75rem; margin: 0 0 4px 0; font-weight: 600; text-transform: uppercase; }
+.income-box .stat-label { color: #16a34a; }
+.expense-box .stat-label { color: #dc2626; }
+.wealth-box .stat-label { color: #4f46e5; }
+
+.stat-value { font-size: 1.1rem; font-weight: 800; margin: 0; }
+.income-box .stat-value { color: #14532d; }
+.expense-box .stat-value { color: #7f1d1d; }
+.wealth-box .stat-value { color: #1e1b4b; }
+
+/* 📉 የግራፍ መያዣ */
+.chart-wrapper {
+  position: relative;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* 🔘 በተኖች (Buttons) */
+.submit-btn {
+  width: 100%;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #4338ca;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.download-btn {
+  width: 100%;
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #059669;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+/* 🔍 የፍለጋ ሳጥን ዲዛይን */
+.filter-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.filter-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.filter-group input, .filter-group select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+/* 📜 የግብይቶች ዝርዝር ማሳያ */
+.transaction-list {
+  margin-top: 25px;
+  max-height: 200px;
+  overflow-y: auto;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 15px;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.9rem;
+}
+
+.tx-desc { font-weight: 600; color: #334155; }
+.tx-cat { font-size: 0.8rem; color: #64748b; }
+.tx-amount.income { color: #16a34a; font-weight: 700; }
+.tx-amount.expense { color: #dc2626; font-weight: 700; }
