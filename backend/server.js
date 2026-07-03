@@ -15,6 +15,7 @@ connectDB();
 // ማስተናገጃዎች (Middlewares)
 const allowedOrigins = [
   'http://localhost:3000',
+  'https://finance-tracker-omega-smoky.vercel.app',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
