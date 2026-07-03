@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Transaction = require('../models/Transaction');
 const { generateMonthlyStatement } = require('../services/pdfService');
+const authMiddleware = require('../middleware/auth');
 
-router.get('/download-statement', async (req, res) => {
+router.get('/download-statement', authMiddleware, async (req, res) => {
   try {
-    // 1. ሁሉንም መረጃዎች ከዳታቤዝ ማምጣት
-    const transactions = await Transaction.find().sort({ date: -1 });
+    // 1. ሁሉንም መረጃዎች ከዳታቤዝ ማምጣት (ለተጠቃሚው ብቻ)
+    const transactions = await Transaction.find({ userId: req.user.userId }).sort({ date: -1 });
 
     // 2. ፒዲኤፉን ማመንጨት
     const pdfBuffer = await generateMonthlyStatement(transactions);

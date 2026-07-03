@@ -45,7 +45,7 @@ export default function App() {
     if (!token) return;
 
     try {
-      const response = await axios.get('https://my-fintrack-six.vercel.app/api/transactions', {
+      const response = await axios.get('http://localhost:5000/api/transactions', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAllTransactions(response.data);
@@ -118,7 +118,7 @@ export default function App() {
 
     try {
       if (income && Number(income) > 0) {
-        await axios.post('https://my-fintrack-six.vercel.app/api/transactions', { description: `${description} - Income`, amount: Number(income), category: 'ገቢ' }, config);
+        await axios.post('http://localhost:5000/api/transactions', { description: `${description} - Income`, amount: Number(income), category: 'ገቢ' }, config);
       }
 
       const expensesList = [
@@ -131,7 +131,7 @@ export default function App() {
 
       for (const item of expensesList) {
         if (item.val && Number(item.val) > 0) {
-          await axios.post('https://my-fintrack-six.vercel.app/api/transactions', { description: `${description} - ${item.cat.split(' ')[0]}`, amount: -Number(item.val), category: item.cat }, config);
+          await axios.post('http://localhost:5000/api/transactions', { description: `${description} - ${item.cat.split(' ')[0]}`, amount: -Number(item.val), category: item.cat }, config);
         }
       }
 
@@ -146,7 +146,7 @@ export default function App() {
   const downloadStatement = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('https://my-fintrack-six.vercel.app/api/reports/download-statement', {
+      const response = await axios.get('http://localhost:5000/api/reports/download-statement', {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
       });
