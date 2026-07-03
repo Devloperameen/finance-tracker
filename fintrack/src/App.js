@@ -28,6 +28,8 @@ export default function App() {
   const [filterCategory, setFilterCategory] = useState('All');
 
   const [totals, setTotals] = useState({ totalIncome: 0, totalExpenses: 0, netWealth: 0 });
+  const [exchangeRates, setExchangeRates] = useState(null);
+  const [ratesLoading, setRatesLoading] = useState(true);
   const [chartData, setChartData] = useState({
     labels: ['Food', 'Transport', 'Entertainment', 'Rent', 'Others'],
     datasets: [{ data: [0, 0, 0, 0, 0], backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#06b6d4', '#64748b'] }]
@@ -64,6 +66,21 @@ export default function App() {
       fetchDashboardData();
     }
   }, [isLoggedIn, fetchDashboardData]);
+
+  // 💱 Fetch live exchange rates
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        const response = await axios.get(`${API}/api/currency`);
+        setExchangeRates(response.data);
+      } catch (error) {
+        console.error("Error fetching exchange rates:", error);
+      } finally {
+        setRatesLoading(false);
+      }
+    };
+    fetchRates();
+  }, []);
 
   // 🔍 የፍለጋ እና የማጣሪያ ስራ (Live Filter)
   useEffect(() => {
@@ -184,6 +201,37 @@ export default function App() {
         <button onClick={handleLogout} style={{ position: 'absolute', right: 0, top: '10px', padding: '8px 16px', backgroundColor: '#ef4444', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>Logout</button>
         <h1>FINTRACK</h1>
         <p>Welcome, {user?.username}! Personal Finance Tracker</p>
+      </div>
+
+      {/* 💱 Live Exchange Rates Bar */}
+      <div className="rates-bar" style={{ width: '100%', maxWidth: '1100px', marginBottom: '24px' }}>
+        {ratesLoading ? (
+          <p style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem' }}>Loading exchange rates...</p>
+        ) : exchangeRates ? (
+          <div className="rates-grid">
+            <div className="rate-item">
+              <span className="rate-label">🇺🇸 USD</span>
+              <span className="rate-value">1.00</span>
+            </div>
+            <div className="rate-item">
+              <span className="rate-label">🇪🇹 ETB</span>
+              <span className="rate-value">{exchangeRates.rates?.ETB?.toFixed(2)}</span>
+            </div>
+            <div className="rate-item">
+              <span className="rate-label">🇪🇺 EUR</span>
+              <span className="rate-value">{exchangeRates.rates?.EUR?.toFixed(4)}</span>
+            </div>
+            <div className="rate-item">
+              <span className="rate-label">🇬🇧 GBP</span>
+              <span className="rate-value">{exchangeRates.rates?.GBP?.toFixed(4)}</span>
+            </div>
+            <div className="rate-item">
+              <span className="rate-label">🇦🇪 AED</span>
+              <span className="rate-value">{exchangeRates.rates?.AED?.toFixed(4)}</span>
+            </div>
+            <div className="rate-date">Updated: {exchangeRates.date}</div>
+          </div>
+        ) : null}
       </div>
 
       <div className="layout-grid">

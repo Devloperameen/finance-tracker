@@ -243,3 +243,48 @@ body {
 .tx-cat { font-size: 0.8rem; color: #64748b; }
 .tx-amount.income { color: #16a34a; font-weight: 700; }
 .tx-amount.expense { color: #dc2626; font-weight: 700; }
+
+/* 💱 Live Exchange Rates Bar */
+.rates-bar {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.rates-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rate-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.rate-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rate-value {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.rate-date {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  align-self: center;
+  font-style: italic;
+}
