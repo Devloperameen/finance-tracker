@@ -4,8 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// 🔐 JWT Secret Key (ለጊዜው እዚህ እንግለጸው፣ በኋላ ወደ .env እንቀይረዋለን)
-const JWT_SECRET = "fintrack_super_secret_key_123";
+const JWT_SECRET = process.env.JWT_SECRET || "fintrack_super_secret_key_123";
 
 // 1. SIGNUP ROUTE (አዲስ ተጠቃሚ መመዝገቢያ)
 router.post('/signup', async (req, res) => {

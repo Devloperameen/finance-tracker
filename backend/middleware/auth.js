@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "fintrack_super_secret_key_123";
+const JWT_SECRET = process.env.JWT_SECRET || "fintrack_super_secret_key_123";
 
 module.exports = function (req, res, next) {
   // ቶከኑን ከHeader ላይ መውሰድ

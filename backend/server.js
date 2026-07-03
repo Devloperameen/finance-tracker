@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const connectDB = require('./config/db.js');
 const transactionRoutes = require('./routes/transactionRoutes.js');
 const reportRoutes = require('./routes/reportRoutes.js');
-const currencyRoutes = require('./routes/currencyRoutes.js'); // 👈 አዲሱን የምንዛሬ ራውት እዚህ እንጠራዋለን
+const currencyRoutes = require('./routes/currencyRoutes.js');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ዳታቤዙን ማገናኘት
 connectDB();

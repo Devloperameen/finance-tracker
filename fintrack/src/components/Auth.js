@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function Auth({ onLoginSuccess }) {
   const [isLogin, setIsLogin] = useState(true); // Login ወይስ Signup መሆኑን መለያ
   const [username, setUsername] = useState('');
@@ -15,7 +17,7 @@ export default function Auth({ onLoginSuccess }) {
     try {
       if (isLogin) {
         // 🔐 መግቢያ (Login)
-        const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const response = await axios.post(`${API}/api/auth/login`, { email, password });
         const { token, user } = response.data;
         
         // ቶከኑንና የተጠቃሚውን መረጃ በብሮውዘሩ ውስጥ ማቀመጥ
@@ -25,7 +27,7 @@ export default function Auth({ onLoginSuccess }) {
         onLoginSuccess(); // ወደ ዋናው ዳሽቦርድ ማለፍ
       } else {
         // 📝 አዲስ አካውንት መፍጠሪያ (Signup)
-        const response = await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
+        const response = await axios.post(`${API}/api/auth/signup`, { username, email, password });
         alert(response.data.message);
         setIsLogin(true); // አካውንት ከፈጠረ በኋላ ወደ መግቢያ ገጽ መመለስ
       }
